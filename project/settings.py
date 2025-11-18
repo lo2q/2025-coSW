@@ -136,5 +136,7 @@ CORS_ALLOW_ALL_ORIGINS=False
 CORS_ALLOW_CREDENTIALS = True
 
 CORS_ALLOWED_ORIGINS = [
-    
+    "https://goodbye-13th.site",
+    "http://localhost:5173",
+    "http://localhost:5174",
 ]
