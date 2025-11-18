@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from rest_framework import generics
+from django.db.models import Q
 from .models import *
 from .serializers import *
 
@@ -14,10 +15,18 @@ class LetterCreateAPIView(generics.CreateAPIView):
 # 멘토별 편지 리스트 조회 (GET /teams/<team_id>/letters/)
 class TeamLetterListAPIView(generics.ListAPIView):
      serializer_class = LetterSerializer
-
+     
      def get_queryset(self):
           team_id = self.kwargs['team_id']
-          return Letter.objects.filter(team_id=team_id)
+          base_letters = list(Letter.objects.filter(team__team_id=team_id))
+          track4_letters = list(
+               Letter.objects.filter(team__track__track_id=4)
+          )
+
+          combined = base_letters + track4_letters
+
+          return combined
+
      
 # 트랙 전체 조회
 class TrackListAPIView(generics.ListAPIView):

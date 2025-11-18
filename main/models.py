@@ -6,6 +6,7 @@ class Track(models.Model):
           ('PD', 'PD'),
           ('BE', 'BE'),
           ('FE', 'FE'),
+          ('ALL', 'ALL'),
      )
 
      track_id = models.AutoField(primary_key=True)
